@@ -7,3 +7,24 @@
 3. mmm frameworks/base
 
 4. 它会生成: ./out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/src/core/java/android/os/IHelloService.java
+
+(2) 编译:
+把程序放到 /work/android-5.0.2/frameworks/testing/APP_0005_Binder_JAVA_App
+执行:
+
+cd /work/android-5.0.2
+. setenv
+lunch // 选择单板
+
+mmm frameworks/testing/APP_0005_Binder_JAVA_App
+它会生成 TestServer.jar, TestClient.jar
+
+复制文件到NFS目录
+cp /work/android-5.0.2/out/target/product/tiny4412/system/framework/Test*.jar /work/nfs_root/android_fs/
+
+(3) 测试:
+logcat TestServer:* TestClient:* HelloService:* *:S &
+CLASSPATH=/mnt/android_fs/TestServer.jar app_process / TestServer &
+CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient hello
+CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient hello weidongshan
+

@@ -1,6 +1,10 @@
+import android.util.Slog;
+import android.os.ServiceManager;
+import android.os.IBinder;
+
 
 /* 1. getService
- * 2. 调用服务的sayhello,sayhello_to
+ * 2. 璋冪敤鏈嶅姟鐨剆ayhello,sayhello_to
  *
  */
 
@@ -32,15 +36,19 @@ public class TestClient {
 
             if (args.length == 1)
             {
-                svr.sayhello();
-                System.out.println("call sayhello");
-                Slog.i(TAG, "call sayhello");
+            		try {
+	                svr.sayhello();
+	                System.out.println("call sayhello");
+	                Slog.i(TAG, "call sayhello");
+              	} catch (Exception e) {}
             }
             else
             {
-                int cnt = svr.sayhello_to(args[1]);
-                System.out.println("call sayhello_to "+args[1]+" : cnt = "+cnt);
-                Slog.i(TAG, "call sayhello_to "+args[1]+" : cnt = "+cnt);
+            		try {
+	                int cnt = svr.sayhello_to(args[1]);
+	                System.out.println("call sayhello_to "+args[1]+" : cnt = "+cnt);
+	                Slog.i(TAG, "call sayhello_to "+args[1]+" : cnt = "+cnt);
+              	} catch (Exception e) {}
             }
         }
     }

@@ -1,5 +1,7 @@
 
-/* ÊµÏÖHello·şÎñµÄº¯Êı */
+import android.util.Slog;
+
+/* å®ç°HelloæœåŠ¡çš„å‡½æ•° */
 
 public class HelloService extends IHelloService.Stub {
     private static final String TAG = "HelloService";
