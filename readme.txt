@@ -1,12 +1,15 @@
 (1) AIDL
-1. 把 IHelloService.aidl 放入 frameworks/base/core/java/android/os
+1. 把 IHelloService.aidl, IGoodbyeService.aidl 放入 frameworks/base/core/java/android/os
 2. 修改 frameworks/base/Android.mk  添加一行
          core/java/android/os/IVibratorService.aidl \
 +        core/java/android/os/IHelloService.aidl \
++        core/java/android/os/IGoodbyeService.aidl \
 
 3. mmm frameworks/base
 
-4. 它会生成: ./out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/src/core/java/android/os/IHelloService.java
+4. 它会生成: 
+./out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/src/core/java/android/os/IHelloService.java
+./out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/src/core/java/android/os/IGoodbyeService.java
 
 (2) 编译:
 把程序放到 /work/android-5.0.2/frameworks/testing/APP_0005_Binder_JAVA_App
@@ -26,5 +29,7 @@ cp /work/android-5.0.2/out/target/product/tiny4412/system/framework/Test*.jar /w
 logcat TestServer:* TestClient:* HelloService:* *:S &
 CLASSPATH=/mnt/android_fs/TestServer.jar app_process / TestServer &
 CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient hello
-CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient hello weidongshan
+CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient hello 100ask.taobao.com
+CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient goodbye
+CLASSPATH=/mnt/android_fs/TestClient.jar app_process / TestClient goodbye weidongshan
 

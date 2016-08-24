@@ -48,6 +48,39 @@ public class TestClient {
 	                int cnt = svr.sayhello_to(args[1]);
 	                System.out.println("call sayhello_to "+args[1]+" : cnt = "+cnt);
 	                Slog.i(TAG, "call sayhello_to "+args[1]+" : cnt = "+cnt);
+              	} catch (Exception e) {
+                        System.out.println("call sayhello_to , err :"+e);
+                        Slog.i(TAG, "call sayhello_to , err : "+e);
+              	}
+            }
+        }
+        else if (args[0].equals("goodbye"))
+        {
+            /* 1. getService */
+            IBinder binder = ServiceManager.getService("goodbye");
+            if (binder == null)
+            {
+                System.out.println("can not get goodbye service");
+                Slog.i(TAG, "can not get goodbye service");
+                return;
+            }
+
+            IGoodbyeService svr = IGoodbyeService.Stub.asInterface(binder);
+
+            if (args.length == 1)
+            {
+            		try {
+	                svr.saygoodbye();
+	                System.out.println("call saygoodbye");
+	                Slog.i(TAG, "call saygoodbye");
+              	} catch (Exception e) {}
+            }
+            else
+            {
+            		try {
+	                int cnt = svr.saygoodbye_to(args[1]);
+	                System.out.println("call saygoodbye_to "+args[1]+" : cnt = "+cnt);
+	                Slog.i(TAG, "call saygoodbye_to "+args[1]+" : cnt = "+cnt);
               	} catch (Exception e) {}
             }
         }
